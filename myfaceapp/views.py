@@ -68,8 +68,13 @@ def logout1(request):
     
 '''Search '''
 def search(request):
-    
-    return render(request,'myfaceapp/search.html')
+    sterm = request.GET.get('search1',None)
+    if sterm == None:
+        return redirect('index')
+    else:
+        user = profilemodel.objects.filter(user__username__icontains= sterm)
+        print(user)
+    return render(request,'myfaceapp/search.html',{'q': user})
 
 '''Following user here'''
 def follow_user(request):
@@ -99,3 +104,6 @@ def uploadpost(request):
         return render(request,'myfaceapp/upload-post.html')
     else:
         return redirect("signup")
+
+def likepost(request,id):
+    print(id)
