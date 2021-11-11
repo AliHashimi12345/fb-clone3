@@ -26,7 +26,7 @@
         </p>
       </div>
       <div class="form">
-        <form action="{% url 'login' %}" method="POST" class="singup">
+        <form action="{% url 'login' %}" method="POST" class="signup">
           {% csrf_token %}
           <input type="text" name="username" class="email" placeholder="Username" />
           <input type="password" name="password" class="password" placeholder="password here" />
