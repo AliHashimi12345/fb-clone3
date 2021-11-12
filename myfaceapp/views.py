@@ -73,17 +73,19 @@ def search(request):
         return redirect('index')
     else:
         user = profilemodel.objects.filter(user__username__icontains= sterm)
-        print(user)
+        
     return render(request,'myfaceapp/search.html',{'q': user})
 
 '''Following user here'''
 def follow_user(request):
     if request.method == 'POST':
         usertofollow = request.POST['user']
-        print(usertofollow)
         user = User.objects.get(username = usertofollow)
-        print(user)
-        followmodel = profilemodel.objects.get(user=user)
+        activeuser = User.objects.get(username = request.user)
+        followingmodel = profilemodel.objects.get(user=activeuser)
+        followmodel = profilemodel.objects.get(user = user)
+        followingmodel.following.add(user)
+        followmodel.followers.add(request.user)
         print(followmodel.user)
 
     
