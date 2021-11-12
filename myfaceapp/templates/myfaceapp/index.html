@@ -37,7 +37,7 @@
           srcset=""
         />
         <div class="ev">
-          <form action ="{url 'likepost' posts.id %}" method="POST" id="like">i love django
+          <form action ="{% url 'likepost' posts.id %}" method="POST" id="like">i love django
 
             {% csrf_token %}
 
