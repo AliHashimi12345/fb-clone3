@@ -78,6 +78,14 @@ def search(request):
 
 '''Following user here'''
 def follow_user(request):
+    if request.method == 'POST':
+        usertofollow = request.POST['user']
+        print(usertofollow)
+        user = User.objects.get(username = usertofollow)
+        print(user)
+        followmodel = profilemodel.objects.get(user=user)
+        print(followmodel.user)
+
     
     return redirect("search")
 '''For logging Users'''
@@ -106,4 +114,8 @@ def uploadpost(request):
         return redirect("signup")
 
 def likepost(request,id):
-    print(id)
+    if request.method == 'POST':
+        pid = id
+        post = Post.objects.get(id=pid)
+        post.likes.add(request.user)
+        return redirect('index')

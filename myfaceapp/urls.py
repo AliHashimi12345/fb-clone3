@@ -10,5 +10,5 @@ urlpatterns = [
     path("upload-post",views.uploadpost,name="upload-post"),
     path("search/",views.search,name="search"),
     path("follow-user",views.follow_user,name="follow"),
-    path('likepost/<int:id>/',views.likepost,name="likepost")
+    path('likepost/<int:id>/',views.likepost,name="likepost"),
 ]
